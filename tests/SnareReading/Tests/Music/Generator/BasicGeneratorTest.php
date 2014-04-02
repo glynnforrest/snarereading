@@ -1,10 +1,10 @@
 <?php
 
-namespace SnareReading\Tests\Generator;
+namespace SnareReading\Tests\Music\Generator;
 
-require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../../../bootstrap.php';
 
-use SnareReading\Generator\BasicGenerator;
+use SnareReading\Music\Generator\BasicGenerator;
 
 /**
  * BasicGeneratorTest
@@ -21,7 +21,7 @@ class BasicGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testIsGenerator()
     {
-        $this->assertInstanceOf('\SnareReading\Generator\GeneratorInterface', $this->gen);
+        $this->assertInstanceOf('\SnareReading\Music\Generator\GeneratorInterface', $this->gen);
     }
 
     public function testGenerateStartsWithDrums()

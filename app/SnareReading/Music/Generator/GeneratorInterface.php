@@ -1,6 +1,6 @@
 <?php
 
-namespace SnareReading\Generator;
+namespace SnareReading\Music\Generator;
 
 /**
  * GeneratorInterface
