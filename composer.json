@@ -1,0 +1,10 @@
+{
+    "require": {
+        "glynnforrest/neptune":"0.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SnareReading\\": "app/SnareReading"
+        }
+    }
+}
