@@ -36,8 +36,7 @@ class ScoreCreatorTest extends \PHPUnit_Framework_TestCase
                         ->will($this->returnValue($score));
         $this->repository->expects($this->once())
                          ->method('save')
-                         ->with($score)
-                         ->will($this->returnValue($score));
+                         ->with($score);
 
         $this->assertSame($score, $this->creator->createRandom());
     }
