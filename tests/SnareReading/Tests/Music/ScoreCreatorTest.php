@@ -15,27 +15,28 @@ class ScoreCreatorTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $generator;
-    protected $store;
+    protected $repository;
     protected $creator;
 
     public function setUp()
     {
-        $this->generator = $this->getMock('\SnareReading\Music\Generator\GeneratorInterface');
-        $this->store = $this->getMock('\SnareReading\Music\Store\StoreInterface');
-        $this->creator = new ScoreCreator($this->generator, $this->store);
+        $this->generator = $this->getMock('SnareReading\Music\Generator\GeneratorInterface');
+        $this->repository = $this->getMock('SnareReading\Repository\ScoreRepositoryInterface');
+        $this->creator = new ScoreCreator($this->generator, $this->repository);
     }
 
     public function testCreateRandom()
     {
-        $score = 'score';
+        $score = $this->getMock('SnareReading\Music\Score');
         $this->generator->expects($this->once())
                         ->method('generate')
                         ->will($this->returnValue($score));
-        $this->store->expects($this->once())
-                    ->method('save')
-                    ->with($score);
+        $this->repository->expects($this->once())
+                         ->method('save')
+                         ->with($score)
+                         ->will($this->returnValue($score));
 
-        $this->creator->createRandom();
+        $this->assertSame($score, $this->creator->createRandom());
     }
 
 }

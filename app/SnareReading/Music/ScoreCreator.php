@@ -3,7 +3,7 @@
 namespace SnareReading\Music;
 
 use SnareReading\Music\Generator\GeneratorInterface;
-use SnareReading\Music\Store\StoreInterface;
+use SnareReading\Repository\ScoreRepositoryInterface;
 
 /**
  * ScoreCreator
@@ -14,17 +14,17 @@ class ScoreCreator
 {
 
     protected $generator;
-    protected $store;
+    protected $repository;
 
-    public function __construct(GeneratorInterface $generator, StoreInterface $store)
+    public function __construct(GeneratorInterface $generator, ScoreRepositoryInterface $repository)
     {
         $this->generator = $generator;
-        $this->store = $store;
+        $this->repository = $repository;
     }
 
     public function createRandom()
     {
-        $this->store->save($this->generator->generate());
+        return $this->repository->save($this->generator->generate());
     }
 
 }
