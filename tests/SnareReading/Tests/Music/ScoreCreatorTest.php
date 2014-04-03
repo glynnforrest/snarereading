@@ -28,6 +28,9 @@ class ScoreCreatorTest extends \PHPUnit_Framework_TestCase
     public function testCreateRandom()
     {
         $score = $this->getMock('SnareReading\Music\ScoreInterface');
+        $this->repository->expects($this->once())
+                         ->method('create')
+                         ->will($this->returnValue($score));
         $this->generator->expects($this->once())
                         ->method('generate')
                         ->will($this->returnValue($score));

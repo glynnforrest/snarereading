@@ -24,7 +24,8 @@ class ScoreCreator
 
     public function createRandom()
     {
-        return $this->repository->save($this->generator->generate());
+        $score = $this->repository->create();
+        return $this->repository->save($this->generator->generate($score));
     }
 
 }

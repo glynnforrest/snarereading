@@ -14,4 +14,6 @@ interface ScoreRepositoryInterface
 
     public function save(ScoreInterface $score);
 
+    public function create();
+
 }
