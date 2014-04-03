@@ -2,6 +2,8 @@
 
 namespace SnareReading\Music\Generator;
 
+use SnareReading\Music\ScoreInterface;
+
 /**
  * GeneratorInterface
  *
@@ -10,6 +12,6 @@ namespace SnareReading\Music\Generator;
 interface GeneratorInterface
 {
 
-    public function generate(array $options = array());
+    public function generate(ScoreInterface $score, array $options = array());
 
 }

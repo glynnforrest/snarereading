@@ -17,17 +17,19 @@ class BasicGeneratorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->gen = new BasicGenerator();
+        $this->score = $this->getMock('SnareReading\Music\ScoreInterface');
     }
 
     public function testIsGenerator()
     {
-        $this->assertInstanceOf('\SnareReading\Music\Generator\GeneratorInterface', $this->gen);
+        $this->assertInstanceOf('SnareReading\Music\Generator\GeneratorInterface', $this->gen);
     }
 
     public function testGenerateStartsWithDrums()
     {
-        $music = $this->gen->generate();
-        $this->assertSame('\drums {', substr($music, 0, 8));
+        $this->score->expects($this->once())
+                    ->method('setNotes');
+        $this->assertSame($this->score, $this->gen->generate($this->score));
     }
 
 }

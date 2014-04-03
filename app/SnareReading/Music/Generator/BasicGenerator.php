@@ -2,6 +2,8 @@
 
 namespace SnareReading\Music\Generator;
 
+use SnareReading\Music\ScoreInterface;
+
 /**
  * BasicGenerator
  *
@@ -17,9 +19,10 @@ class BasicGenerator implements GeneratorInterface
         '0.25' => ["sn16", "sn32 sn"],
     );
 
-    public function generate(array $options = array())
+    public function generate(ScoreInterface $score, array $options = array())
     {
-        return '\drums {' . $this->randomPhrase(16) . ' }';
+        $score->setNotes($this->randomPhrase(16));
+        return $score;
     }
 
     protected function randomChunk($duration)
