@@ -9,7 +9,7 @@ include($root . 'vendor/autoload.php');
 
 use Neptune\Core\Config;
 use Neptune\Core\Neptune;
-use Neptune\Console\Application;
+use Neptune\Console\Application as ConsoleApplication;
 use Neptune\Console\OutputFormatter;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -37,7 +37,13 @@ $c->set('dir.root', $root);
 
 $neptune = new Neptune($c);
 
+//register all the application services
+include('app/Application.php');
+$app = new \Application();
+$app->start($neptune);
+$app->console($neptune, $output);
+
 //off we go
-$app = new Application($neptune, $c);
+$app = new ConsoleApplication($neptune, $c);
 
 $app->run(null, $output);
