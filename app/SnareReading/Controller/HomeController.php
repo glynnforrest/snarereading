@@ -5,18 +5,20 @@ namespace SnareReading\Controller;
 use Neptune\Controller\Controller;
 use Neptune\View\View;
 
-use SnareReading\Generator\ScoreGenerator;
+use SnareReading\Repository\ScoreRepositoryInterface;
+use SnareReading\Music\Generator\BasicGenerator;
+use SnareReading\Music\ScoreCreator;
 
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
 
-    protected $generator;
+    protected $repository;
 
-    public function __construct(ScoreGenerator $generator)
+    public function __construct(ScoreRepositoryInterface $repository)
     {
-        $this->generator = $generator;
+        $this->repository = $repository;
     }
 
     public function indexAction(Request $request)
@@ -26,8 +28,11 @@ class HomeController extends Controller
         $form = $this->form('create');
         $form->handle($request);
         if ($form->isValid()) {
-            $id = $this->generator->newScore();
-            return $this->redirect('/view/' . $id);
+            //refactor this into a model. Just call model->createRandom($options_from_form);
+            $generator = new BasicGenerator();
+            $creator = new ScoreCreator($generator, $this->repository);
+            $score = $creator->createRandom();
+            /* return $this->redirect('/view/' . $score->getId()); */
         }
         $master->page->form = $form;
         return $master;
