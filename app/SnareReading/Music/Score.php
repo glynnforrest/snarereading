@@ -94,4 +94,15 @@ class Score
         return $this->id !== null;
     }
 
+    /**
+     * Get this score as lilypond markup.
+     *
+     * @return string The lilypond markup.
+     */
+    public function getMarkup()
+    {
+        $music = '\drums { ' . $this->notes . ' }' . PHP_EOL;
+        return $music;
+    }
+
 }

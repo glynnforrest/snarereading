@@ -47,4 +47,10 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->score->hasId());
     }
 
+    public function testGetMarkup()
+    {
+        $this->score->setNotes('sn4 sn8 sn');
+        $this->assertSame('\drums { sn4 sn8 sn }' . PHP_EOL, $this->score->getMarkup());
+    }
+
 }
