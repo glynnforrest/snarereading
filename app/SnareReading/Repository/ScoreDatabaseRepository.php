@@ -26,11 +26,29 @@ class ScoreDatabaseRepository implements ScoreRepositoryInterface
         return new Score();
     }
 
+    public function createEntity()
+    {
+        return new ScoreEntity($this->database);
+    }
+
     public function save(Score $score)
     {
-        return true;
-        //check if the score has an id
-        //insert or update the score
+        $entity = $this->createEntity();
+        $entity->title = $score->getTitle();
+        $entity->notes = $score->getNotes();
+
+        //The score has an id if it has been stored before. Tell
+        //the entity to update instead of insert.
+        if ($score->hasId()) {
+            $entity->id = $score->getId();
+            $entity->setStored();
+        }
+
+        $entity->save();
+
+        //Set the id of the score to the id of the entity.
+        $score->setId($entity->getRaw('id'));
+        return $score;
     }
 
 }
