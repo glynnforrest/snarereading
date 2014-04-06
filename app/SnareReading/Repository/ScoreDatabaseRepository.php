@@ -49,7 +49,16 @@ class ScoreDatabaseRepository implements ScoreRepositoryInterface
     public function findById($id)
     {
         $id = (int) $id;
-        return ScoreEntity::selectPK($id);
+        $entity = ScoreEntity::selectPK($this->database, $id);
+        if (!$entity) {
+            throw new \Exception("Score not found: $id");
+        }
+
+        $score = new Score();
+        $score->setTitle($entity->title);
+        $score->setNotes($entity->notes);
+        $score->setId($entity->id);
+        return $score;
     }
 
 }
