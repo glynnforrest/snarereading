@@ -12,6 +12,8 @@ use SnareReading\Music\Score;
 interface GeneratorInterface
 {
 
-    public function generate(Score $score, array $options = array());
+    public function notes(Score $score, array $options = array());
+
+    public function title(Score $score);
 
 }

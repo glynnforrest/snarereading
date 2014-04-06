@@ -25,11 +25,18 @@ class BasicGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('SnareReading\Music\Generator\GeneratorInterface', $this->gen);
     }
 
-    public function testGenerateStartsWithDrums()
+    public function testNotes()
     {
         $this->score->expects($this->once())
                     ->method('setNotes');
-        $this->assertSame($this->score, $this->gen->generate($this->score));
+        $this->assertSame($this->score, $this->gen->notes($this->score));
+    }
+
+    public function testTitle()
+    {
+        $this->score->expects($this->once())
+                    ->method('setTitle');
+        $this->assertSame($this->score, $this->gen->title($this->score));
     }
 
 }

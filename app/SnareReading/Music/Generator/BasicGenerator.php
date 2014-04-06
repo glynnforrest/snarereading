@@ -19,7 +19,7 @@ class BasicGenerator implements GeneratorInterface
         '0.25' => ["sn16", "sn32 sn"],
     );
 
-    public function generate(Score $score, array $options = array())
+    public function notes(Score $score, array $options = array())
     {
         $score->setNotes($this->randomPhrase(16));
         return $score;
@@ -48,5 +48,10 @@ class BasicGenerator implements GeneratorInterface
         return $phrase;
     }
 
+    public function title(Score $score)
+    {
+        $score->setTitle(date('jS F Y'));
+        return $score;
+    }
 
 }

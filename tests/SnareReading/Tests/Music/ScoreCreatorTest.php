@@ -40,7 +40,10 @@ class ScoreCreatorTest extends \PHPUnit_Framework_TestCase
                          ->method('create')
                          ->will($this->returnValue($score));
         $this->generator->expects($this->once())
-                        ->method('generate')
+                        ->method('notes')
+                        ->with($score);
+        $this->generator->expects($this->once())
+                        ->method('title')
                         ->with($score);
 
         $this->assertSame($score, $creator->createRandom());

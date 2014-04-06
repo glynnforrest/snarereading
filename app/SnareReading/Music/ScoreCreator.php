@@ -36,7 +36,8 @@ class ScoreCreator
     public function createRandom()
     {
         $score = $this->create();
-        $this->generator->generate($score);
+        $this->generator->title($score);
+        $this->generator->notes($score);
 
         return $score;
     }
