@@ -5,6 +5,7 @@ namespace SnareReading\Tests\Model;
 require_once __DIR__ . '/../../../bootstrap.php';
 
 use SnareReading\Model\ScoreModel;
+use SnareReading\Music\Score;
 
 /**
  * ScoreModelTest
@@ -35,6 +36,16 @@ class ScoreModelTest extends \PHPUnit_Framework_TestCase
                           ->method('createPdf');
         $score = $this->model->createRandomAndSave();
         $this->assertInstanceOf('SnareReading\Music\Score', $score);
+    }
+
+    public function testFindById()
+    {
+        $score = new Score();
+        $this->repository->expects($this->once())
+                         ->method('findById')
+                         ->with(2)
+                         ->will($this->returnValue($score));
+        $this->assertSame($score, $this->model->findById(2));
     }
 
 }

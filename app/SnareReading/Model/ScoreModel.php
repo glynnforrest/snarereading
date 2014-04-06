@@ -40,4 +40,9 @@ class ScoreModel
         return $score;
     }
 
+    public function findById($id)
+    {
+        return $this->repository->findById($id);
+    }
+
 }
