@@ -45,4 +45,10 @@ class ScoreModel
         return $this->repository->findById($id);
     }
 
+    public function getDownloadById($id)
+    {
+        $score = $this->repository->findById($id);
+        return $this->pdf_store->getDownload($score);
+    }
+
 }
