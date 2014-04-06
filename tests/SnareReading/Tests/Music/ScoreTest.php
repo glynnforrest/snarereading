@@ -33,4 +33,11 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Score 1', $this->score->getTitle());
     }
 
+    public function testGetAndSetId()
+    {
+        $this->assertNull($this->score->getId());
+        $this->assertSame($this->score, $this->score->setId(1));
+        $this->assertSame(1, $this->score->getId());
+    }
+
 }
