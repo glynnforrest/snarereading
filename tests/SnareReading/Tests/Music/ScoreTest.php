@@ -40,4 +40,11 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, $this->score->getId());
     }
 
+    public function testHasId()
+    {
+        $this->assertFalse($this->score->hasId());
+        $this->score->setId('a5623ebd');
+        $this->assertTrue($this->score->hasId());
+    }
+
 }

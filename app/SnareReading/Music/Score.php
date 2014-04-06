@@ -85,4 +85,13 @@ class Score
         return $this->id;
     }
 
+    /**
+     * Check if this score has an id. This would normally mean that
+     * the score has been stored with a ScoreRepositoryInterface.
+     */
+    public function hasId()
+    {
+        return $this->id !== null;
+    }
+
 }
