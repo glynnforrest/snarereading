@@ -22,11 +22,25 @@ class ScoreCreator
         $this->repository = $repository;
     }
 
+    /**
+     * Create a new Score instance.
+     *
+     * @return Score A new Score instance.
+     */
+    public function create()
+    {
+        return new Score();
+    }
+
+    /**
+     * Create a new Score instance with random attributes applied.
+     */
     public function createRandom()
     {
-        $score = $this->repository->create();
+        $score = $this->create();
         $this->generator->generate($score);
         $this->repository->save($score);
+
         return $score;
     }
 
