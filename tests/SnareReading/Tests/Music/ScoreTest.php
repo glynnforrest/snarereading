@@ -26,4 +26,11 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($music, $this->score->getNotes());
     }
 
+    public function testGetAndSetTitle()
+    {
+        $this->assertNull($this->score->getTitle());
+        $this->assertSame($this->score, $this->score->setTitle('Score 1'));
+        $this->assertSame('Score 1', $this->score->getTitle());
+    }
+
 }
