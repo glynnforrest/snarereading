@@ -14,4 +14,6 @@ interface ScoreRepositoryInterface
 
     public function save(Score $score);
 
+    public function findById($id);
+
 }

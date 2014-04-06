@@ -46,4 +46,10 @@ class ScoreDatabaseRepository implements ScoreRepositoryInterface
         return $score;
     }
 
+    public function findById($id)
+    {
+        $id = (int) $id;
+        return ScoreEntity::selectPK($id);
+    }
+
 }
