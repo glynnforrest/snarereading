@@ -27,7 +27,8 @@ class HomeController extends Controller
         $form->handle($request);
         if ($form->isValid()) {
             $score = $this->score_model->createRandomAndSave();
-            /* return $this->redirect('/view/' . $score->getId()); */
+
+            return $this->redirect('/view/' . $score->getId());
         }
         $master->page->form = $form;
 
