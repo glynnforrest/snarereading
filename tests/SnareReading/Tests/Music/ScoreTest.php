@@ -22,7 +22,7 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
     public function testGetAndSetNotes()
     {
         $music = 'sn4 sn sn sn';
-        $this->score->setNotes($music);
+        $this->assertSame($this->score, $this->score->setNotes($music));
         $this->assertSame($music, $this->score->getNotes());
     }
 
