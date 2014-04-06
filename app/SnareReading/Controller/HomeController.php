@@ -37,7 +37,10 @@ class HomeController extends Controller
 
     public function viewAction(Request $request, $id)
     {
-        return $id;
+        $master = View::load('master');
+        $master->page = View::load('view');
+        $master->page->score = $this->score_model->findById($id);
+        return $master;
     }
 
     public function notFoundAction(Request $request)
