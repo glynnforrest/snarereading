@@ -40,12 +40,16 @@ class Application
         /*     new \Neptune\Security\Resolver\LoggerResolver($neptune['logger']) */
         /* ); */
 
-        $neptune['score.repository'] = function($neptune) {
+        $neptune['repo.score'] = function($neptune) {
             return new \SnareReading\Repository\ScoreDatabaseRepository($neptune['db']);
         };
 
+        $neptune['model.score'] = function($neptune) {
+            return new \SnareReading\Model\ScoreModel($neptune['repo.score']);
+        };
+
         $neptune['controller.home'] = function($neptune) {
-            return new \SnareReading\Controller\HomeController($neptune['score.repository']);
+            return new \SnareReading\Controller\HomeController($neptune['model.score']);
         };
     }
 

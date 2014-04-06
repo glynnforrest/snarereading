@@ -5,20 +5,18 @@ namespace SnareReading\Controller;
 use Neptune\Controller\Controller;
 use Neptune\View\View;
 
-use SnareReading\Repository\ScoreRepositoryInterface;
-use SnareReading\Music\Generator\BasicGenerator;
-use SnareReading\Music\ScoreCreator;
+use SnareReading\Model\ScoreModel;
 
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
 
-    protected $repository;
+    protected $score_model;
 
-    public function __construct(ScoreRepositoryInterface $repository)
+    public function __construct(ScoreModel $model)
     {
-        $this->repository = $repository;
+        $this->score_model = $model;
     }
 
     public function indexAction(Request $request)
@@ -28,14 +26,11 @@ class HomeController extends Controller
         $form = $this->form('create');
         $form->handle($request);
         if ($form->isValid()) {
-            //refactor this into a model. Just call model->createRandom($options_from_form);
-            $generator = new BasicGenerator();
-            $creator = new ScoreCreator($generator);
-            $score = $creator->createRandom();
-            $this->repository->save($score);
+            $score = $this->score_model->createRandomAndSave();
             /* return $this->redirect('/view/' . $score->getId()); */
         }
         $master->page->form = $form;
+
         return $master;
     }
 
@@ -43,7 +38,6 @@ class HomeController extends Controller
     {
         return $id;
     }
-
 
     public function notFoundAction(Request $request)
     {
