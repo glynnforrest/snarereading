@@ -3,6 +3,7 @@
   array (
     'neptune' => '/var/www/snarereading/vendor/glynnforrest/neptune/',
     'root' => '/var/www/snarereading/',
+    'build' => 'storage/build/'
   ),
   'log' =>
   array (

@@ -44,8 +44,13 @@ class Application
             return new \SnareReading\Repository\ScoreDatabaseRepository($neptune['db']);
         };
 
+        $neptune['pdfstorage'] = function($neptune) {
+            $dir = $neptune['config']->getPath('dir.build');
+            return new \SnareReading\PdfStorage\FilePdfStorage($dir);
+        };
+
         $neptune['model.score'] = function($neptune) {
-            return new \SnareReading\Model\ScoreModel($neptune['repo.score']);
+            return new \SnareReading\Model\ScoreModel($neptune['repo.score'], $neptune['pdfstorage']);
         };
 
         $neptune['controller.home'] = function($neptune) {
