@@ -14,10 +14,4 @@ interface ScoreRepositoryInterface
 
     public function save(Score $score);
 
-    /**
-     * Create a new score instance with any optional configuration
-     * required for this repository storage.
-     */
-    public function create();
-
 }

@@ -24,11 +24,6 @@ class ScoreDatabaseRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->repo = new ScoreDatabaseRepository($this->database);
     }
 
-    public function testCreate()
-    {
-        $this->assertInstanceOf('SnareReading\Music\Score', $this->repo->create());
-    }
-
     public function testCreateEntity()
     {
         $this->assertInstanceOf('SnareReading\Entity\Score', $this->repo->createEntity());

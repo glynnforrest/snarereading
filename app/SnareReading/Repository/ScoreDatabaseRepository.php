@@ -21,11 +21,6 @@ class ScoreDatabaseRepository implements ScoreRepositoryInterface
         $this->database = $database;
     }
 
-    public function create()
-    {
-        return new Score();
-    }
-
     public function createEntity()
     {
         return new ScoreEntity($this->database);
