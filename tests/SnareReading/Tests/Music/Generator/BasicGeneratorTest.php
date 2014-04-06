@@ -17,7 +17,7 @@ class BasicGeneratorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->gen = new BasicGenerator();
-        $this->score = $this->getMock('SnareReading\Music\ScoreInterface');
+        $this->score = $this->getMock('SnareReading\Music\Score');
     }
 
     public function testIsGenerator()

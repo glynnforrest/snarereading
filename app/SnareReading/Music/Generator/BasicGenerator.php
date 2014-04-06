@@ -2,7 +2,7 @@
 
 namespace SnareReading\Music\Generator;
 
-use SnareReading\Music\ScoreInterface;
+use SnareReading\Music\Score;
 
 /**
  * BasicGenerator
@@ -19,7 +19,7 @@ class BasicGenerator implements GeneratorInterface
         '0.25' => ["sn16", "sn32 sn"],
     );
 
-    public function generate(ScoreInterface $score, array $options = array())
+    public function generate(Score $score, array $options = array())
     {
         $score->setNotes($this->randomPhrase(16));
         return $score;
