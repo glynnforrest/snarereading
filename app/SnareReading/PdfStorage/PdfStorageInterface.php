@@ -14,4 +14,6 @@ interface PdfStorageInterface
 
     public function createPdf(Score $score);
 
+    public function getDownload(Score $score);
+
 }
