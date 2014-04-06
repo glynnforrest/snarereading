@@ -2,8 +2,8 @@
 
 namespace SnareReading\Repository;
 
-use SnareReading\Music\ScoreInterface;
-use SnareReading\Entity\Score;
+use SnareReading\Music\Score;
+use SnareReading\Entity\Score as ScoreEntity;
 use Neptune\Database\Driver\DatabaseDriverInterface;
 
 /**
@@ -21,16 +21,16 @@ class ScoreDatabaseRepository implements ScoreRepositoryInterface
         $this->database = $database;
     }
 
-    public function save(ScoreInterface $score)
-    {
-        echo $score->getNotes();
-        //check if the score exists
-        //insert or update the score
-    }
-
     public function create()
     {
-        return new Score($this->database);
+        return new Score();
+    }
+
+    public function save(Score $score)
+    {
+        return true;
+        //check if the score has an id
+        //insert or update the score
     }
 
 }

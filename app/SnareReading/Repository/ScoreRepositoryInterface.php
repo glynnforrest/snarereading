@@ -2,7 +2,7 @@
 
 namespace SnareReading\Repository;
 
-use SnareReading\Music\ScoreInterface;
+use SnareReading\Music\Score;
 
 /**
  * ScoreRepositoryInterface
@@ -12,8 +12,12 @@ use SnareReading\Music\ScoreInterface;
 interface ScoreRepositoryInterface
 {
 
-    public function save(ScoreInterface $score);
+    public function save(Score $score);
 
+    /**
+     * Create a new score instance with any optional configuration
+     * required for this repository storage.
+     */
     public function create();
 
 }
