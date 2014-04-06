@@ -5,6 +5,7 @@ namespace SnareReading\Model;
 use SnareReading\Repository\ScoreRepositoryInterface;
 use SnareReading\Music\Generator\BasicGenerator;
 use SnareReading\Music\ScoreCreator;
+use SnareReading\PdfStorage\PdfStorageInterface;
 
 /**
  * ScoreModel
@@ -15,18 +16,27 @@ class ScoreModel
 {
 
     protected $repository;
+    protected $pdf_store;
 
-    public function __construct(ScoreRepositoryInterface $repository)
+    public function __construct(ScoreRepositoryInterface $repository, PdfStorageInterface $pdf_store)
     {
         $this->repository = $repository;
+        $this->pdf_store = $pdf_store;
+    }
+
+    public function getGenerator($type = null)
+    {
+        return new BasicGenerator();
     }
 
     public function createRandomAndSave(array $options = array())
     {
-        $generator = new BasicGenerator();
+        $generator = $this->getGenerator();
         $creator = new ScoreCreator($generator);
         $score = $creator->createRandom();
         $this->repository->save($score);
+        $this->pdf_store->createPdf($score);
+
         return $score;
     }
 
