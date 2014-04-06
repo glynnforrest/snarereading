@@ -2,25 +2,15 @@
 
 namespace SnareReading\Entity;
 
-use SnareReading\Music\ScoreInterface;
 use Neptune\Database\Entity\Entity;
 
-/**
- * Score
- *
- * @author Glynn Forrest <me@glynnforrest.com>
- **/
-class Score extends Entity implements ScoreInterface
+class Score extends Entity
 {
-
-    public function setNotes($notes)
-    {
-        $this->notes = $notes;
-    }
-
-    public function getNotes()
-    {
-        return $this->notes;
-    }
+    protected static $table = 'scores';
+    protected static $fields = array(
+        'id',
+        'title',
+        'notes'
+    );
 
 }

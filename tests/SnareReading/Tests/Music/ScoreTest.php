@@ -4,7 +4,7 @@ namespace SnareReading\Tests\Music;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
-use SnareReading\Entity\Score;
+use SnareReading\Music\Score;
 
 /**
  * ScoreTest
@@ -16,7 +16,7 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->score = new Score($this->getMock('Neptune\Database\Driver\DatabaseDriverInterface'));
+        $this->score = new Score();
     }
 
     public function testGetAndSetNotes()
