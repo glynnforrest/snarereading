@@ -14,12 +14,10 @@ class ScoreCreator
 {
 
     protected $generator;
-    protected $repository;
 
-    public function __construct(GeneratorInterface $generator, ScoreRepositoryInterface $repository)
+    public function __construct(GeneratorInterface $generator)
     {
         $this->generator = $generator;
-        $this->repository = $repository;
     }
 
     /**
@@ -39,7 +37,6 @@ class ScoreCreator
     {
         $score = $this->create();
         $this->generator->generate($score);
-        $this->repository->save($score);
 
         return $score;
     }
