@@ -43,6 +43,13 @@ class HomeController extends Controller
         return $master;
     }
 
+    public function downloadAction(Request $request, $id)
+    {
+        $response = $this->score_model->getDownloadById($id);
+        $response->prepare($request);
+        return $response;
+    }
+
     public function notFoundAction(Request $request)
     {
         return 'Not found';
