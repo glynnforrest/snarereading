@@ -30,8 +30,9 @@ class HomeController extends Controller
         if ($form->isValid()) {
             //refactor this into a model. Just call model->createRandom($options_from_form);
             $generator = new BasicGenerator();
-            $creator = new ScoreCreator($generator, $this->repository);
+            $creator = new ScoreCreator($generator);
             $score = $creator->createRandom();
+            $this->repository->save($score);
             /* return $this->redirect('/view/' . $score->getId()); */
         }
         $master->page->form = $form;
