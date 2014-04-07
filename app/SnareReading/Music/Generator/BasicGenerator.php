@@ -21,7 +21,11 @@ class BasicGenerator implements GeneratorInterface
 
     public function notes(Score $score, array $options = array())
     {
-        $score->setNotes($this->randomPhrase(64));
+        $music = '';
+        for ($i = 0; $i < 4; $i++) {
+            $music .= $this->randomPhrase(4);
+        }
+        $score->setNotes($music);
         return $score;
     }
 
