@@ -49,8 +49,11 @@ class ScoreTest extends \PHPUnit_Framework_TestCase
 
     public function testGetMarkup()
     {
+        $this->score->setTitle('Foo');
         $this->score->setNotes('sn4 sn8 sn');
-        $this->assertSame('\drums { sn4 sn8 sn }' . PHP_EOL, $this->score->getMarkup());
+        $expected = '\header { title = "Foo" }' . PHP_EOL;
+        $expected .= '\drums { sn4 sn8 sn }' . PHP_EOL;
+        $this->assertSame($expected, $this->score->getMarkup());
     }
 
 }

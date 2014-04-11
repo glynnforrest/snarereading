@@ -101,7 +101,8 @@ class Score
      */
     public function getMarkup()
     {
-        $music = '\drums { ' . $this->notes . ' }' . PHP_EOL;
+        $music = '\header { title = "' . $this->title . '" }' . PHP_EOL;
+        $music .= '\drums { ' . $this->notes . ' }' . PHP_EOL;
         return $music;
     }
 
