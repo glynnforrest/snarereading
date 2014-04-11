@@ -15,7 +15,11 @@ class CreateForm extends Form
     protected function init()
     {
         parent::init();
-        $this->submit('Generate');
+        $this->select('type')
+             ->submit('generate');
+
+        $this->getRow('type')
+             ->setChoices(array('Basic' => 'basic'));
     }
 
 }
